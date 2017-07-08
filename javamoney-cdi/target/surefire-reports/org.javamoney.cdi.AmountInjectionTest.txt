@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.javamoney.cdi.AmountInjectionTest
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.208 sec - in org.javamoney.cdi.AmountInjectionTest

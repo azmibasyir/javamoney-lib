@@ -3,6 +3,7 @@
 /deploy
 /tmp
 build/
+target/
 
 # dependencies
 /node_modules
