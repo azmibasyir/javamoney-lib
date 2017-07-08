@@ -1,11 +1,55 @@
-*.class
+# compiled output
+/dist
+/deploy
+/tmp
+build/
 
-# Package Files #
-*.jar
-*.war
-*.ear
-target/
-.settings/
-.project
+# dependencies
+/node_modules
+/bower_components
+
+# IDEs and editors
+.idea
 *.iml
-.idea/
+/.vscode
+.gradle/
+.idea
+*.iws
+*.ipr
+
+!gradle/wrapper/gradle-wrapper.jar
+/logs
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+/.vagrant
+/logs
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store
