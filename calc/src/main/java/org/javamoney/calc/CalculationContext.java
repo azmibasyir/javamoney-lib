@@ -20,27 +20,76 @@ import java.math.MathContext;
 import java.util.Objects;
 
 /**
- * Created by atsticks on 29.05.16.
+ * Singleton to control the default {@link MathContext} to be used along the calculation library.
  */
 public final class CalculationContext {
 
-    private static CalculationContext INSTANCE = new CalculationContext();
+    private static CalculationContext instance = new CalculationContext();
 
-    private MathContext mathContext = MathContext.DECIMAL64;
-    private BigDecimal one = new BigDecimal(1, mathContext);
-    private BigDecimal zero = new BigDecimal(0, mathContext);
+    private MathContext mathContext;
+    private BigDecimal one;
+    private BigDecimal zero;
+    private BigDecimal ten;
+
+    private CalculationContext(){
+        init(MathContext.DECIMAL64);
+    }
 
     public static MathContext mathContext(){
-        return INSTANCE.mathContext;
+        return instance.mathContext;
     }
 
+    /**
+     * Accesses the number '1' initialized with the current {@link MathContext}.
+     * @return the number instance, never null.
+     */
     public static BigDecimal one() {
-        return INSTANCE.one;
+        return instance.one;
     }
 
+    /**
+     * Accesses the number '1' initialized with the current {@link MathContext}.
+     * @return the number instance, never null.
+     */
     public static BigDecimal zero() {
-        return INSTANCE.zero;
+        return instance.zero;
     }
+
+    /**
+     * Accesses the number '10' initialized with the current {@link MathContext}.
+     * @return the number instance, never null.
+     */
+    public static BigDecimal ten() {
+        return instance.ten;
+    }
+
+    /**
+     * Creates the given number initialized with the current {@link MathContext}.
+     * @param num the number instance.
+     * @return the number instance, never null.
+     */
+    public static BigDecimal bigDecimal(long num) {
+        return new BigDecimal(num, mathContext());
+    }
+
+    /**
+     * Creates the given number initialized with the current {@link MathContext}.
+     * @param num the number instance.
+     * @return the number instance, never null.
+     */
+    public static BigDecimal bigDecimal(double num) {
+        return new BigDecimal(num, mathContext());
+    }
+
+    /**
+     * Creates the given number initialized with the current {@link MathContext}.
+     * @param num the number instance.
+     * @return the number instance, never null.
+     */
+    public static BigDecimal bigDecimal(BigDecimal num) {
+        return new BigDecimal(num.toString(), mathContext());
+    }
+
 
     /**
      * This method allows o set the {@link MathContext} used for doing calculations.
@@ -48,12 +97,14 @@ public final class CalculationContext {
      * @param mathContext the new match context, not null.
      */
     public static void setMathContext(MathContext mathContext){
-        INSTANCE.init(Objects.requireNonNull(mathContext));
+        instance.init(Objects.requireNonNull(mathContext));
     }
 
     private void init(MathContext mathContext){
+        this.mathContext = mathContext;
         one = new BigDecimal(1, mathContext);
         zero = new BigDecimal(0, mathContext);
-        this.mathContext = mathContext;
+        ten = new BigDecimal(10, mathContext);
     }
+
 }
